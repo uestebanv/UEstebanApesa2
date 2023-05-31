@@ -1,0 +1,47 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Empleado</h2>
+    </div>
+    <br />
+    <div class="row">
+        @Html.ActionLink("Agregar", "Form", "Empleado", htmlAttributes: new { @class = "btn btn-success" })
+    </div>
+    <hr />
+
+
+    @if (Model.Empleados != null)
+    {
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <td>Editar</td>
+                    <td>Nombre Completo</td>
+                    <td>Edad</td>
+                    <td>Eliminar</td>
+                </tr>
+            </thead>
+            @foreach (ML.Empleado empleado in Model.Empleados)
+            {
+                <tbody>
+                    <tr>
+                        <td><a class="btn btn-success" href="@Url.Action("Form","Empleado", new { IdEmpleado = empleado.IdEmpleado} )"></a></td>
+                        <td class="hidden">@empleado.IdEmpleado</td>
+                        <td>@empleado.Nombre @empleado.ApellidoPaterno @empleado.ApellidoMaterno</td>
+                        <td>@empleado.Edad</td>
+                        <td><a class="btn btn-danger" href="@Url.Action("Delete","Empleado")" onclick="return confirm('El estatus se cambiara');"></a></td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+    else
+    {
+
+    }
+</div>

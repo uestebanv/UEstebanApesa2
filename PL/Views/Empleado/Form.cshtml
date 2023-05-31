@@ -1,0 +1,42 @@
+﻿@model ML.Empleado
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Empleado</h2>
+    </div>
+    <br />
+
+    @using (Html.BeginForm("Form", "Empleado", FormMethod.Post, new { @class = "multipar/form-data" }))
+    {
+
+        @Html.LabelFor(model => model.IdEmpleado, new { @class = "hidden" })
+        @Html.TextBoxFor(model => model.IdEmpleado, new { @class = "hidden" })
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.ApellidoPaterno)
+                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.ApellidoMaterno)
+                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.Edad)
+                @Html.TextBoxFor(model => model.Edad, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            @Html.ActionLink("Regresar", "GetAll", "Empleado", htmlAttributes: new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
