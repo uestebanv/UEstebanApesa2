@@ -56,5 +56,20 @@ namespace PL.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult fd(ML.Empleado empleado)
+        {
+            if (empleado.IdEmpleado == 0)
+            {
+                ML.Result result = BL.EmpleadoModel.Add(empleado);
+                return RedirectToAction("GetAll", "Empleado");
+            }
+            else
+            {
+                //ML.Result result = BL.Empleado.Update();
+                return PartialView("GetAll");
+            }
+        }
+
     }
 }
